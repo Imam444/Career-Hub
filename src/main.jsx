@@ -13,12 +13,12 @@ import ErrorPage from './components/ErrorPage/ErrorPage.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root></Root>,
+    element:<Root></Root>,
     errorElement:<ErrorPage></ErrorPage>,
     children:[
       {
         path:'/',
-        element: <Home></Home>
+        element: <Home></Home>,
       },
       {
         path: '/applied',
@@ -32,5 +32,5 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
+  </StrictMode>
 )
