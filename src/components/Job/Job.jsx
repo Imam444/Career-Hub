@@ -1,16 +1,14 @@
 import { IoLocationOutline } from "react-icons/io5";
 import { CiDollar } from "react-icons/ci";
+import { Link } from "react-router-dom";
 const Job = ({ job }) => {
-  const {
-    logo,
-    job_title,
-    company_name,
-    remote_or_onsite,
-    location,
-    job_type,
-    salary,
-    job_description,
-  } = job;
+  const { id, logo, job_title, company_name, remote_or_onsite, location, job_type, salary } = job;
+   
+    
+   
+    
+    
+    
   return (
     <div className="card card-compact bg-base-100 shadow-xl">
       <figure>
@@ -27,12 +25,18 @@ const Job = ({ job }) => {
             {job_type}
           </button>
         </div>
-        <div className="mt-4 flex">
-          <h2 className="flex mr-2"><IoLocationOutline className="text-2xl"></IoLocationOutline>{location}</h2>
-          <h2 className="text-2xl flex"><CiDollar></CiDollar>{ salary}</h2>
+        <div className="mt-4">
+          <h2 className="flex mr-2">
+            <IoLocationOutline className="text-2xl"></IoLocationOutline>
+            {location}
+          </h2>
+          <h2 className="text-2xl flex">
+            <CiDollar></CiDollar>
+            {salary}
+          </h2>
         </div>
         <div className="card-actions ">
-          <button className="btn btn-primary">View Details</button>
+          <Link to={`/job/${id}`}><button className="btn btn-primary">View Details</button></Link>
         </div>
       </div>
     </div>

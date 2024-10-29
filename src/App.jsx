@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      
+      <Toaster></Toaster>
       <h1>Vite + React</h1>
       
       
