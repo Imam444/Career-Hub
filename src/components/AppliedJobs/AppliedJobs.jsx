@@ -1,21 +1,52 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { getStoredJobApplication } from "../../utility/localstorage";
 
-
 const AppliedJobs = () => {
-    const jobs = useLoaderData()
-    useEffect(() => {
-        const storedJobIds = getStoredJobApplication();
-        if (jobs.length > 0) {
-            const appliedJobs= jobs.filter(jobs =>)
+  const jobs = useLoaderData();
+    const [appliedJob, setAppliedJob] = useState([]);
+    const [displayJob, setDisplayJob]= useState([],)
+  useEffect(() => {
+    const storedJobIds = getStoredJobApplication();
+    if (jobs.length > 0) {
+      //
+      const jobsApplied = [];
+      for (const id of storedJobIds) {
+        const job = jobs.find(job => job.id === id);
+        if (job) {
+          jobsApplied.push(job);
         }
-    },[])
-    return (
-        <div>
-            <h2>I Applied Jobs</h2>
-        </div>
-    );
+      }
+        setAppliedJob(jobsApplied);
+        setDisplayJob(jobsApplied)
+    }
+  }, [jobs]);
+  return (
+    <div>
+      <details className="dropdown">
+        <summary className="btn m-1">open or close</summary>
+        <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+          <li>
+            <a>All</a>
+          </li>
+          <li>
+            <a>Remote</a>
+            <a>Onsite</a>
+          </li>
+        </ul>
+      </details>
+      <h2 className="text-2xl">I Applied Jobs:{appliedJob.length}</h2>
+      <ul>
+        {displayJob.appliedJob.map((job) => (
+          <li key={job.id}>
+            <span>
+              {job.job_title} {job.company_name}:{job.remote_or_onsite}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default AppliedJobs;
