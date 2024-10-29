@@ -23,12 +23,13 @@ import JobDetails from './components/JobDetails/JobDetails.jsx';
       },
       {
         path: '/applied',
-        element:<AppliedJobs></AppliedJobs>
+        element: <AppliedJobs></AppliedJobs>,
+        loader:() => fetch('/jobs.json')
       },
       {
         path: '/job/:id',
         element: <JobDetails></JobDetails>,
-        loader: () => fetch('../jobs.json')
+        loader: () => fetch('/jobs.json')
       }
     ]
     
